@@ -1,26 +1,26 @@
 import { useState, useEffect } from "react";
 import { NavLink, Route, useRouteMatch } from "react-router-dom";
 import API from "../../action/API";
-import Movie from "../movie/Movie";
+import MovieDetails from "../movieDetails/MovieDetails";
 
 
 
 const Home = () => {
   const { url, path } = useRouteMatch();
-const [trandingMovies, setTrandingMovies] = useState(null);
+const [movies, setMovies] = useState(null);
 
 useEffect(() => {
-  API.fetchTrendingMovies().then(setTrandingMovies)
+  API.fetchTrendingMovies().then(data => setMovies(data.results))
 }, [])
 
-console.log(trandingMovies)
+console.log(movies)
 
   return (
     <>
      <h2>Tranding today</h2>
-     {trandingMovies && (
+     {movies && (
       <ul>
-        {trandingMovies.results.map(movie => (
+        {movies.map(movie => (
           <li key={movie.id}>
              <NavLink to={`${url}/${movie.id}`}>{movie.title}</NavLink>
           </li>

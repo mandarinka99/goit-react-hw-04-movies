@@ -12,6 +12,22 @@ async function fetchData(url) {
 const API = {
   fetchTrendingMovies() {
     return fetchData(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}`)
+  },
+
+  fetchMoviesByQuery(search, page) {
+    return fetchData(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${search}&page=${page}`)
+  },
+
+  fethDetailsAboutMovie(id){
+    return fetchData(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`)
+  },
+
+  fetchCast(id){
+    return fetchData(`${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}&language=en-US`)
+  },
+
+  fetchReviews(id){
+    return fetchData(`${BASE_URL}/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`)
   }
 };
 
