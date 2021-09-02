@@ -14,11 +14,11 @@ const API = {
     return fetchData(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}`)
   },
 
-  fetchMoviesByQuery(search, page) {
+  fetchMoviesByQuery(search, page = 1) {
     return fetchData(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${search}&page=${page}`)
   },
 
-  fethDetailsAboutMovie(id){
+  fethMovieById(id){
     return fetchData(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`)
   },
 

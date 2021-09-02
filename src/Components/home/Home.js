@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink, Route, useRouteMatch } from "react-router-dom";
+import { Link, Route, useRouteMatch } from "react-router-dom";
 import API from "../../action/API";
 import MovieDetails from "../movieDetails/MovieDetails";
 
@@ -22,7 +22,7 @@ console.log(movies)
       <ul>
         {movies.map(movie => (
           <li key={movie.id}>
-             <NavLink to={`${url}/${movie.id}`}>{movie.title}</NavLink>
+             <Link to={`movies/${movie.id}`}>{movie.title}</Link>
           </li>
         ))}
       </ul>
