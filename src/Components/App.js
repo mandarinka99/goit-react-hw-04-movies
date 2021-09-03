@@ -1,24 +1,30 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import HomePage from "../pages/HomePage";
-import MoviesPage from "../pages/MoviesPage";
 import Container from "./container/Container";
-import Header from "./header/Header";
-import MovieDetails from "./movieDetails/MovieDetails";
-import NoPage from "../pages/NoPage";
+import React, { lazy, Suspense } from 'react';
+import AppBar from "./appBar/AppBar";
+import Spiner from "./spiner/Spiner";
+
+
+const HomePage = lazy(() => import('../pages/HomePage.js'));
+const MoviesPage =lazy(() => import('../pages/MoviesPage.js'));
+const NoPage =lazy(() => import('../pages/NoPage.js'));
+const MovieDetailsPage =lazy(() => import('../pages/MovieDetailsPage.js'));
 
 const App = () => {
   return (
     <Container>
-      <Header />
+      <AppBar />
+
+      <Suspense fallback={<Spiner/>}>
       <Switch>
         <Route path="/movies" exact>
           <MoviesPage />
         </Route>
 
         <Route path="/movies/:movieId">
-          <MovieDetails />
+          <MovieDetailsPage />
         </Route>
 
         <Route path="/error" exact>
@@ -32,6 +38,8 @@ const App = () => {
         <Redirect to="/" />
         
       </Switch>
+
+      </Suspense>
       <ToastContainer autoClose={3000} />
     </Container>
   );

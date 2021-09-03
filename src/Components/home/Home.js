@@ -17,7 +17,8 @@ const Home = () => {
       {movies && (
         <ul>
           {movies.map((movie) => (
-            <li key={movie.id} >
+            <li key={movie.id} className={s.homeItem}>
+            
               <Link
                 to={{
                   pathname: `movies/${movie.id}`,

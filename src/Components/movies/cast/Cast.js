@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import API from "../../action/API";
-import defaultImage from "../../images/default-image.jpg";
+import API from "../../../action/API";
+
+import defaultImage from "../../../images/default-image.jpg";
 
 const Cast = () => {
   const { movieId } = useParams();

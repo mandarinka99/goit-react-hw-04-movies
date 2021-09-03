@@ -1,4 +1,4 @@
-import MovieDetails from "../Components/movieDetails/MovieDetails"
+import MovieDetails from "../Components/movies/movieDetails/MovieDetails"
 
 const MovieDetailsPage = () => {
   return (

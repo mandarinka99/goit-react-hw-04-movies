@@ -1,5 +1,5 @@
 .homeTitle {
-
+margin-left: 40px;
 }
 
 .homeLink {
@@ -11,3 +11,6 @@
   font-size: 18px;
 }
 
+.homeItem :hover {
+  color: #2196f3;
+}

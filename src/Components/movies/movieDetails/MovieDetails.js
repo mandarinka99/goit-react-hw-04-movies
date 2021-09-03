@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { NavLink, Redirect, Route, useHistory, useLocation, useParams, useRouteMatch } from "react-router-dom";
-import API from "../../action/API";
+// import API from "../../../action/API";
 import Cast from "../cast/Cast";
 import Reviews from "../reviews/Reviews";
 import s from "./MovieDetails.module.css";
-import defaultImage from "../../images/default-image.jpg";
+import defaultImage from "../../../images/default-image.jpg";
 import _get from "lodash/get";
+import API from "../../../action/API";
 
 const MovieDetails = () => {
   const history = useHistory();
@@ -78,13 +79,15 @@ const MovieDetails = () => {
             </li>
           </ul>
 
+          <Suspense fallback={<div></div>}>
           <Route path={`${path}/cast`}>
-            <Cast />
+            <Cast/>
           </Route>
 
           <Route path={`${path}/reviews`}>
             <Reviews />
           </Route>
+          </Suspense>
         </div>
         </>
       )}

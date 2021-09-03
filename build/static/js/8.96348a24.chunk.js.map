@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/NoPage.js"],"names":["NoPage"],"mappings":"4JAMeA,UANA,WACb,OACE","file":"static/js/8.96348a24.chunk.js","sourcesContent":["const NoPage = () => {\n  return (\n    <>Not found page</>\n  );\n}\n\nexport default NoPage;"],"sourceRoot":""}

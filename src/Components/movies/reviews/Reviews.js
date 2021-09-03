@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import _get from "lodash/get";
-import API from "../../action/API";
+import API from "../../../action/API";
 
 const Reviews = () => {
   const { movieId } = useParams();
