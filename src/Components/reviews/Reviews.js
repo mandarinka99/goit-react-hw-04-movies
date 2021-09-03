@@ -6,17 +6,16 @@ import API from "../../action/API";
 const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState(null);
-  console.log(`reviews`, reviews);
 
   useEffect(() => {
-    API.fetchReviews(movieId).then(setReviews);
+    API.fetchReviews(movieId).then(setReviews).catch(error => console.log(error));
   }, [movieId]);
   return (
     <>
       {_get(reviews, "results.length") ? (
         <ul>
           {reviews.results.map((result) => (
-            <li>
+            <li key={result.id}>
               <h2>Autor: {result.author}</h2>
               <p>{result.content}</p>
             </li>

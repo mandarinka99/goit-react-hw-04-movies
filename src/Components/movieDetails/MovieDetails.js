@@ -1,23 +1,39 @@
 import { useState, useEffect } from "react";
-import { NavLink, Route, useParams, useRouteMatch } from "react-router-dom";
+import { NavLink, Redirect, Route, useHistory, useLocation, useParams, useRouteMatch } from "react-router-dom";
 import API from "../../action/API";
 import Cast from "../cast/Cast";
 import Reviews from "../reviews/Reviews";
 import s from "./MovieDetails.module.css";
 import defaultImage from "../../images/default-image.jpg";
+import _get from "lodash/get";
 
 const MovieDetails = () => {
+  const history = useHistory();
+  const location = useLocation();
   const { url, path } = useRouteMatch();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    API.fethMovieById(movieId).then(setMovie);
+    API.fethMovieById(movieId).then(setMovie).catch(setError)
   }, [movieId]);
 
+  const goBack = e => {
+    if (_get(location, "state.from")) {
+      history.push(location.state.from)
+      return;
+    }
+    history.push('/')
+  }
+  
   return (
     <>
+    {error && <Redirect to="/error"/>}
+    
       {movie && (
+        <>
+        <button type="button" onClick={goBack}>GO BACK</button>
         <div>
           <img
             src={
@@ -43,7 +59,7 @@ const MovieDetails = () => {
             <li>
               <NavLink
                 exact
-                to={`${url}/cast`}
+                to={{pathname: `${url}/cast`, state: {from: location.state?.from || '/'}}}
                 className={s.link}
                 activeClassName={s.activeLink}
               >
@@ -53,7 +69,7 @@ const MovieDetails = () => {
             <li>
               <NavLink
                 exact
-                to={`${url}/reviews`}
+                to={{pathname: `${url}/reviews`, state: {from: _get(location, "state.from")}}}
                 className={s.link}
                 activeClassName={s.activeLink}
               >
@@ -70,6 +86,7 @@ const MovieDetails = () => {
             <Reviews />
           </Route>
         </div>
+        </>
       )}
     </>
   );

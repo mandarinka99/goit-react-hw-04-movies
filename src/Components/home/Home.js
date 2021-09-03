@@ -1,42 +1,38 @@
 import { useState, useEffect } from "react";
-import { Link, Route, useRouteMatch } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import API from "../../action/API";
-import MovieDetails from "../movieDetails/MovieDetails";
-
-
+import s from "./Home.module.css";
 
 const Home = () => {
-  const { url, path } = useRouteMatch();
-const [movies, setMovies] = useState(null);
+  const location = useLocation();
+  const [movies, setMovies] = useState(null);
 
-useEffect(() => {
-  API.fetchTrendingMovies().then(data => setMovies(data.results))
-}, [])
-
-console.log(movies)
+  useEffect(() => {
+    API.fetchTrendingMovies().then(data => setMovies(data.results)).catch(error => console.log(error));
+  }, []);
 
   return (
     <>
-     <h2>Tranding today</h2>
-     {movies && (
-      <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>
-             <Link to={`movies/${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
-     ) }
-
+      <h2 className={s.homeTitle}>Tranding today</h2>
+      {movies && (
+        <ul>
+          {movies.map((movie) => (
+            <li key={movie.id} >
+              <Link
+                to={{
+                  pathname: `movies/${movie.id}`,
+                  state: { from: location },
+                }}
+                className={s.homeLink}
+              >
+                {movie.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
-}
-
-// <hr />
-
-// <Route path={`${path}/:authorId`}>
-//   {authors && <AuthorSubView authors={authors} />}
-// </Route>
-// </>
+};
 
 export default Home;

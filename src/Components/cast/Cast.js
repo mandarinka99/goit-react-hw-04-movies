@@ -8,7 +8,7 @@ const Cast = () => {
   const [cast, setCast] = useState(null);
 
   useEffect(() => {
-    API.fetchCast(movieId).then(setCast);
+    API.fetchCast(movieId).then(setCast).catch(error => console.log(error));
   }, [movieId]);
   console.log(`cast`, cast);
 
