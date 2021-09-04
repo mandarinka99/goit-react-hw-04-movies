@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import API from "../../../action/API";
+import s from "./Cast.module.css"
 
 import defaultImage from "../../../images/default-image.jpg";
 
@@ -14,11 +15,11 @@ const Cast = () => {
   console.log(`cast`, cast);
 
   return (
-    <>
+    <div className={s.castContainer}>
       {cast && (
         <ul>
           {cast.cast.map((actor) => (
-            <li key={actor.id}>
+            <li key={actor.id} className={s.castItem}>
               <img
                 src={
                   actor.profile_path
@@ -26,14 +27,17 @@ const Cast = () => {
                     : defaultImage
                 }
                 alt={actor.name}
+                width="120"
+                height="160"
+                className={s.castImg}
               />
-              <p>{actor.name}</p>
-              <p>{actor.character}</p>
+              <p className={s.actorName}>{actor.name}</p>
+              <p className={s.actorCharacter}>{actor.character}</p>
             </li>
           ))}
         </ul>
       )}
-    </>
+    </div>
   );
 };
 

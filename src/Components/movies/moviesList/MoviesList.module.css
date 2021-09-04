@@ -1,0 +1,17 @@
+.listContainer {
+  padding: 10px;
+margin-left: 40px;
+}
+
+.listItem {
+  display: block;
+  padding-left: 12px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #2a363b;
+  font-size: 18px;
+}
+
+.listItem :hover {
+  color: #2196f3;
+}

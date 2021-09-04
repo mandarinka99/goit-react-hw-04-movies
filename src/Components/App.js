@@ -6,7 +6,6 @@ import React, { lazy, Suspense } from 'react';
 import AppBar from "./appBar/AppBar";
 import Spiner from "./spiner/Spiner";
 
-
 const HomePage = lazy(() => import('../pages/HomePage.js'));
 const MoviesPage =lazy(() => import('../pages/MoviesPage.js'));
 const NoPage =lazy(() => import('../pages/NoPage.js'));

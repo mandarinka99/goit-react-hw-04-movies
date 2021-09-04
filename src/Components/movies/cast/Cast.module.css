@@ -1,0 +1,21 @@
+
+.castContainer {
+  padding: 20px;
+}
+
+.castImg {
+  margin-bottom: 5px;
+}
+
+.actorName{
+  margin-bottom: 5px;
+}
+
+.actorCharacter {
+  margin-bottom: 10px;
+}
+
+.castItem {
+  margin-left: 5px;
+  list-style: none;
+}
