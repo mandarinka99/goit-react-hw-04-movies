@@ -12,7 +12,6 @@ const Cast = () => {
   useEffect(() => {
     API.fetchCast(movieId).then(setCast).catch(error => console.log(error));
   }, [movieId]);
-  console.log(`cast`, cast);
 
   return (
     <div className={s.castContainer}>
